@@ -3,3 +3,16 @@ class PetShop:
         self.name = name
         self.pets = pets
         self.total_cash = total_cash
+        self.pets_sold = 0
+
+    def stock_count(self):
+        return len(self.pets)
+
+    def increase_pets_sold(self):
+        self.pets_sold += 1
+
+    def increase_total_cash(self, cash):
+        self.total_cash += cash
+
+    def remove_pet(self, pet):
+        self.pets.pop(pet)
