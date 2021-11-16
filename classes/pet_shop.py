@@ -1,3 +1,6 @@
+from classes.pet import Pet
+
+
 class PetShop:
     def __init__(self, name, pets, total_cash):
         self.name = name
@@ -15,4 +18,17 @@ class PetShop:
         self.total_cash += cash
 
     def remove_pet(self, pet):
-        self.pets.pop(pet)
+        self.pets.remove(pet)
+
+    def find_pet_by_name(self, name):
+        for pet in self.pets:
+            if pet.name == name:
+                return pet
+
+    def sell_pet_to_customer(self, pet_name, customer):
+        pet = self.find_pet_by_name(pet_name)
+        customer.reduce_cash(pet.price)
+        self.increase_total_cash(pet.price)
+        self.increase_pets_sold()
+        self.remove_pet(pet)
+        customer.add_pet(pet)
